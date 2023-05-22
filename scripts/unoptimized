@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DOCKER_COMPOSE_FILE="Dockerfiles/unoptimized/docker-compose.yaml"
+
+option="${1}"
+case ${option} in
+   "build")
+      docker-compose -f $DOCKER_COMPOSE_FILE build
+      ;;
+   "console")
+      docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve /bin/sh
+      ;;
+   "run")
+      docker-compose -f $DOCKER_COMPOSE_FILE up
+      ;;
+   *)
+      echo "`basename ${0}`:usage: [-f file] | [-d directory]"
+      exit 1 # Command to come out of the program with status 1
+      ;;
+esac
+

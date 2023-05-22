@@ -28,8 +28,8 @@ I had to make liberal use of ENTRYPOINT in order to support web building due to 
 
 We should measure the size of these unoptimised images to then get a sense of progress as we optimise. I haven't done it here because at the time of writing it's late and I'm tired 😴
 
-Build the various images via eg: docker build -f ./api/Dockerfile . --target build -t redwoodjs-project/api-build
-Image size via eg: docker inspect -f "{{ .Size }}" redwoodjs-project/api-build
+Build the various images via eg: `docker build -f ./api/Dockerfile . --target build -t redwoodjs-project/api-build`
+Image size via eg: `docker inspect -f "{{ .Size }}" redwoodjs-project/api-build`
 
 Next steps?
 

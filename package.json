@@ -20,5 +20,10 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
+  "scripts": {
+    "docker:unoptimized:build": "docker-compose -f Dockerfiles/unoptimized/docker-compose.yaml build",
+    "docker:unoptimized:run": "docker-compose -f Dockerfiles/unoptimized/docker-compose.yaml up",
+    "docker:unoptimized:down": "docker-compose -f Dockerfiles/unoptimized/docker-compose.yaml down -v"
+  },
   "packageManager": "yarn@3.5.1"
 }
