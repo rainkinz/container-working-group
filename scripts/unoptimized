@@ -10,6 +10,9 @@ case ${option} in
    "console")
       docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve /bin/sh
       ;;
+   "logs")
+      docker-compose -f $DOCKER_COMPOSE_FILE logs -f
+      ;;
    "run")
       docker-compose -f $DOCKER_COMPOSE_FILE up
       ;;
