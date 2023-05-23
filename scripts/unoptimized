@@ -4,21 +4,28 @@ DOCKER_COMPOSE_FILE="Dockerfiles/unoptimized/docker-compose.yaml"
 
 option="${1}"
 case ${option} in
-   "build")
-      docker-compose -f $DOCKER_COMPOSE_FILE build
-      ;;
-   "console")
-      docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve /bin/sh
-      ;;
-   "logs")
-      docker-compose -f $DOCKER_COMPOSE_FILE logs -f
-      ;;
-   "run")
-      docker-compose -f $DOCKER_COMPOSE_FILE up
-      ;;
-   *)
-      echo "`basename ${0}`:usage: [-f file] | [-d directory]"
-      exit 1 # Command to come out of the program with status 1
-      ;;
+  "build")
+    docker-compose -f $DOCKER_COMPOSE_FILE build
+    ;;
+  "console")
+    docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve /bin/bash
+    ;;
+  "down")
+    # Remove the container volumes
+    docker-compose -f $DOCKER_COMPOSE_FILE down -v
+    ;;
+  "logs")
+    docker-compose -f $DOCKER_COMPOSE_FILE logs -f
+    ;;
+  "run")
+    docker-compose -f $DOCKER_COMPOSE_FILE up
+    ;;
+  "setup")
+    docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve scripts/docker/setup_db.sh
+    ;;
+  *)
+    echo "Usage: ${0} [build|console|down|logs|run|setup]"
+    exit 1
+    ;;
 esac
 
