@@ -1,27 +1,30 @@
 #!/bin/sh
 
-DOCKER_COMPOSE_FILE="Dockerfiles/unoptimized/docker-compose.yaml"
+# DOCKER_COMPOSE_FILE="Dockerfiles/unoptimized/docker-compose.yaml"
+DOCKER_COMPOSE_FILE="docker-compose.yaml"
+
+pushd "Dockerfiles/unoptimized"
 
 option="${1}"
 case ${option} in
   "build")
-    docker-compose -f $DOCKER_COMPOSE_FILE build
+    docker-compose build
     ;;
   "console")
-    docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve /bin/bash
+    docker-compose run --rm api-serve /bin/bash
     ;;
   "down")
     # Remove the container volumes
-    docker-compose -f $DOCKER_COMPOSE_FILE down -v
+    docker-compose down -v
     ;;
   "logs")
-    docker-compose -f $DOCKER_COMPOSE_FILE logs -f
+    docker-compose logs -f
     ;;
   "run")
-    docker-compose -f $DOCKER_COMPOSE_FILE up
+    docker-compose up
     ;;
   "setup")
-    docker-compose -f $DOCKER_COMPOSE_FILE run --rm api-serve scripts/docker/setup_db.sh
+    docker-compose run --rm api-serve scripts/docker/setup_db.sh
     ;;
   *)
     echo "Usage: ${0} [build|console|down|logs|run|setup]"
