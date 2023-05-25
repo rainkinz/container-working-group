@@ -9,15 +9,15 @@ services:
       - POSTGRES_DB=postgres
     ports:
       - 5432:5432
-  web:
-    build:
-      context: ../../
-      dockerfile: ./Dockerfiles/leftlane-mmentele-example/web/Dockerfile
-      target: publish
-    environment:
-      - APISERVER_SERVICE=api
-    ports:
-      - "8910:8910"
+  # web:
+  #   build:
+  #     context: ../../
+  #     dockerfile: ./Dockerfiles/leftlane-mmentele-example/web/Dockerfile
+  #     target: publish
+  #   environment:
+  #     - APISERVER_SERVICE=api
+  #   ports:
+  #     - "8910:8910"
   api:
     volumes:
       - .env:/home/apiuser/.env

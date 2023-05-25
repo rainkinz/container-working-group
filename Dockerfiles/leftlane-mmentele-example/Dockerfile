@@ -24,7 +24,8 @@ COPY . ./
 # Actually create the compiled api/dist files
 # RUN yarn rw build api
 RUN ./node_modules/.bin/rw generate types
-RUN cp ./web/types/graphql.d.ts ./utils/types/graphql.ts
+RUN mkdir -p ./utils/types
+RUN cp ./api/types/graphql.d.ts ./utils/types/graphql.ts
 RUN ./node_modules/.bin/lerna exec --no-private -- yarn build
 RUN ./node_modules/.bin/rw build api
 
