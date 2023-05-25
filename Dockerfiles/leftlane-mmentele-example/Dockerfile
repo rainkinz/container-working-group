@@ -13,7 +13,9 @@ COPY ./yarn.lock ./.yarnrc.yml ./
 COPY ./.yarn ./.yarn
 COPY ./api/package.json ./api/
 COPY ./web/package.json ./web/
-COPY ./utils ./utils
+
+# @rainkinz - this doesn't seem to exist?
+#COPY ./utils ./utils
 
 # Try to avoid installing devDependencies, specifically this omits playwright and cypress which are quite large.
 RUN yarn install

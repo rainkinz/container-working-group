@@ -11,8 +11,9 @@ services:
       - 5432:5432
   web:
     build:
-      context: ./web
-      dockerfile: ./Dockerfile
+      context: ../../
+      dockerfile: ./Dockerfiles/leftlane-mmentele-example/web/Dockerfile
+      target: publish
     environment:
       - APISERVER_SERVICE=api
     ports:
@@ -21,8 +22,8 @@ services:
     volumes:
       - .env:/home/apiuser/.env
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ../../
+      dockerfile: ./Dockerfiles/leftlane-mmentele-example/Dockerfile
     ports:
       - "8911:8911"
     entrypoint: yarn rw dev api
