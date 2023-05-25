@@ -30,7 +30,7 @@ case ${option} in
     docker-compose run --rm api-serve scripts/docker/setup_db.sh
     ;;
   *)
-    echo "Usage: ${0} [build|console|down|logs|run|setup]"
+    echo "Usage: ${0} [build|console|down|logs|run|setup-db]"
     exit 1
     ;;
 esac

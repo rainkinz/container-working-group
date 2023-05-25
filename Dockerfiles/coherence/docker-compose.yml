@@ -6,7 +6,7 @@ services:
     image: redwoodjs-coherence/api:latest
     build:
       context: ../../
-      dockerfile: ./Dockerfiles/coherence/Dockerfile.web
+      dockerfile: ./Dockerfiles/coherence/Dockerfile.api
     ports:
       - "8911:8911"
     depends_on:
@@ -22,7 +22,7 @@ services:
     image: redwoodjs-coherence/web-serve:latest
     build:
       context: ../../
-      dockerfile: ./Dockerfiles/coherence/Dockerfile.api
+      dockerfile: ./Dockerfiles/coherence/Dockerfile.web
     ports:
       - "8910:8910"
     depends_on:
