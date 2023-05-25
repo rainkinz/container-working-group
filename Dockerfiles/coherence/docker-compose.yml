@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  # Redwood API
+  api-serve:
+    image: redwoodjs-coherence/api:latest
+    build:
+      context: ../../
+      dockerfile: ./Dockerfiles/coherence/Dockerfile.web
+    ports:
+      - "8911:8911"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood
+      - TEST_DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood_test
+
+  # Redwood Web
+  web-serve:
+    image: redwoodjs-coherence/web-serve:latest
+    build:
+      context: ../../
+      dockerfile: ./Dockerfiles/coherence/Dockerfile.api
+    ports:
+      - "8910:8910"
+    depends_on:
+      - api-serve
+    environment:
+      - DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood
+      - TEST_DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood_test
+
+  # Postgres DB
+  db:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_USER: redwood
+      POSTGRES_PASSWORD: redwood
+      POSTGRES_DB: redwood
+    ports:
+      - "5432:5432"

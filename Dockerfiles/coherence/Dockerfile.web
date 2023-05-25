@@ -15,6 +15,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn rw build web
+# prerendering repends on having a db up - @rainkinz
+RUN yarn rw build web --prerender false
 
-CMD ["yarn", "rw", "serve", "web"]
+CMD ["yarn", "rw", "serve", "web", "--apiHost http://api-serve:8911"]

@@ -1,9 +1,8 @@
 #!/bin/sh
 
-# DOCKER_COMPOSE_FILE="Dockerfiles/unoptimized/docker-compose.yaml"
 DOCKER_COMPOSE_FILE="docker-compose.yaml"
 
-pushd "Dockerfiles/unoptimized"
+pushd "Dockerfiles/coherence"
 
 option="${1}"
 case ${option} in
@@ -19,6 +18,9 @@ case ${option} in
     ;;
   "logs")
     docker-compose logs -f
+    ;;
+  "ps")
+    docker-compose ps
     ;;
   "run")
     docker-compose up
