@@ -49,6 +49,12 @@
                 "id": "redwood-api",
                 "value": "origin"
               }
+            },
+            "DATABASE_URL": {
+              "fromService": {
+                "id": "db",
+                "value": "dbConnectionString"
+              }
             }
           }
         },
